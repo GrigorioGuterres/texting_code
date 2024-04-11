@@ -1,0 +1,29 @@
+CREATE DATABASE administratif_db;
+
+USE administratif_db;
+
+CREATE TABLE municipio (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nama VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE posto_administrativo (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nama VARCHAR(255) NOT NULL,
+    municipio_id INT,
+    FOREIGN KEY (municipio_id) REFERENCES municipio(id)
+);
+
+CREATE TABLE suku (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nama VARCHAR(255) NOT NULL,
+    posto_administrativo_id INT,
+    FOREIGN KEY (posto_administrativo_id) REFERENCES posto_administrativo(id)
+);
+
+CREATE TABLE aldeia (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nama VARCHAR(255) NOT NULL,
+    suku_id INT,
+    FOREIGN KEY (suku_id) REFERENCES suku(id)
+);
